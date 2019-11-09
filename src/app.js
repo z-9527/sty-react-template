@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 // import Test from './components/Test'
 
-const Test = React.lazy(() => import('@/components/Test'))
+const Test = React.lazy(() => import('@/components/Test'));
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Test />
       </React.Suspense>
     </div>
-  )
+  );
 }
 
 export default App;

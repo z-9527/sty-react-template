@@ -6,16 +6,32 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "analyz": "webpack-bundle-analyzer --port 8001 ./build/stats.json"
+    "analyz": "webpack-bundle-analyzer --port 8001 ./build/stats.json",
+    "lint": "eslint src"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn lint"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-react": "^7.7.0",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

@@ -20,7 +20,7 @@ module.exports = {
     path: resolve('build'),
     filename: '[name].js',
     chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
-    libraryTarget: 'umd',
+    libraryTarget: 'umd'
   },
   resolve: {
     alias: {
@@ -47,9 +47,10 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
+              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
             }
-          }
+          },
+          'eslint-loader'
         ]
       },
       {
@@ -61,11 +62,11 @@ module.exports = {
               // you can specify a publicPath here
               // by default it uses publicPath in webpackOptions.output
               publicPath: '../',
-              hmr: process.env.NODE_ENV === 'development',
-            },
+              hmr: process.env.NODE_ENV === 'development'
+            }
           },
-          'css-loader',
-        ],
+          'css-loader'
+        ]
       },
       {
         test: /\.(png|jpe?g|svg|gif)(\?.*)?$/,
@@ -97,9 +98,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].css',   //打包到static的css目录下
+      filename: 'static/css/[name].css', // 打包到static的css目录下
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
+      ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
@@ -107,3 +108,4 @@ module.exports = {
     })
   ]
 }
+;

@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // 从根目录走
 function resolve(dir) {
@@ -25,6 +26,10 @@ module.exports = {
     alias: {
       '@': resolve('src')
     }
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
   optimization: {
     // splitChunks: {
@@ -95,6 +100,10 @@ module.exports = {
       filename: 'static/css/[name].css',   //打包到static的css目录下
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true
     })
   ]
 }

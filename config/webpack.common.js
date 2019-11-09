@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // 从根目录走
 function resolve(dir) {
@@ -16,6 +18,19 @@ module.exports = {
   output: {
     path: resolve('build'),
     filename: '[name].js',
+    chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
+    libraryTarget: 'umd',
+  },
+  resolve: {
+    alias: {
+      '@': resolve('src')
+    }
+  },
+  optimization: {
+    // splitChunks: {
+    //   chunks: 'all'
+    // },
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
   },
   module: {
     rules: [
@@ -26,7 +41,8 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-react']
+              presets: ['@babel/preset-react'],
+              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
             }
           }
         ]
@@ -50,7 +66,7 @@ module.exports = {
         test: /\.(png|jpe?g|svg|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 100,
+          limit: 10000,
           name: 'static/img/[name].[hash:7].[ext]'
         }
       },
@@ -77,6 +93,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css',   //打包到static的css目录下
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     })
   ]

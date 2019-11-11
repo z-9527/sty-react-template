@@ -47,7 +47,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
+              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
             }
           },
           'eslint-loader'
@@ -95,7 +95,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      minify: {
+        collapseWhitespace: true// 删除空格、换行
+      }
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css', // 打包到static的css目录下
@@ -107,5 +112,4 @@ module.exports = {
       generateStatsFile: true
     })
   ]
-}
-;
+};

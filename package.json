@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "yarn dev",
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
     "analyz": "webpack-bundle-analyzer --port 8001 ./build/stats.json",

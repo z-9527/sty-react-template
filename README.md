@@ -9,3 +9,15 @@
 - [x] 按需加载
 - [x] 构建分析
 - [x] git hooks
+
+
+### 脚手架
+```shell
+yarn global add sty-cli
+
+# 初始化项目
+sty-cli init myProject
+cd myProject
+yarn install 
+yarn start
+```

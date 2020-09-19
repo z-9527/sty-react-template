@@ -28,10 +28,10 @@ module.exports = {
     },
     extensions: ['.js', '.jsx']
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM'
+  // },
   optimization: {
     // splitChunks: {
     //   chunks: 'all'
@@ -48,7 +48,11 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
+              plugins: [
+                ['@babel/plugin-proposal-decorators', { legacy: true }],
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-syntax-dynamic-import'
+              ]
             }
           },
           'eslint-loader'
@@ -70,6 +74,21 @@ module.exports = {
         ]
       },
       {
+        test: /\.less$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true
+            }
+          },
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
         test: /\.(png|jpe?g|svg|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -82,7 +101,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'static/font/[name].[hash:7].[ext]'
+          name: 'static/font/[name].[hash:7].[ext]',
+          publicPath: '../../' // 字体在css中，路径要退两层
         }
       },
       {

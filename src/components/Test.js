@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import './index.less';
 
 class Test extends Component {
-  state = {}
+  state = {};
   render() {
-    return (
-      <div>
-        test
-      </div>
-    );
+    return <div className='red'>test</div>;
   }
 }
 

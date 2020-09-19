@@ -7,7 +7,7 @@ module.exports = {
     'standard',
     "plugin:react/recommended"
   ],
-  "parser": "babel-eslint",
+  parser: '@typescript-eslint/parser',
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
@@ -21,7 +21,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    'prettier'
+    'prettier',
+    '@typescript-eslint'
   ],
   rules: {
     semi: ["error", "always"],  //语句必须用;
@@ -37,6 +38,7 @@ module.exports = {
       trailingComma: 'none',
       arrowParens: 'avoid'
     }],
-    eqeqeq: 0
+    eqeqeq: 0,
+    "no-use-before-define": "off", //'React' was used before it was defined
   }
 }

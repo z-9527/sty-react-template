@@ -14,7 +14,7 @@ function resolve(dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'), // 入口起点根目录
   entry: {
-    app: './src/index.js'
+    app: './src/index.tsx'
   },
   output: {
     path: resolve('build'),
@@ -26,7 +26,7 @@ module.exports = {
     alias: {
       '@': resolve('src')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.tsx', 'ts', '.js', '.jsx']
   },
   // externals: {
   //   react: 'React',
@@ -55,6 +55,7 @@ module.exports = {
               ]
             }
           },
+          'ts-loader',
           'eslint-loader'
         ]
       },

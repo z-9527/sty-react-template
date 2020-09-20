@@ -4,7 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 // 从根目录走
 function resolve(dir) {
@@ -120,7 +121,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: {
-        collapseWhitespace: true// 删除空格、换行
+        collapseWhitespace: true // 删除空格、换行
       }
     }),
     new CleanWebpackPlugin(),
